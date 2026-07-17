@@ -1,0 +1,14 @@
+[package]
+name = "sm-watcher"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+notify = { workspace = true }
+flume = { workspace = true }
+sm-types = { workspace = true }
+sm-index = { workspace = true }

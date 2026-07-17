@@ -1,0 +1,14 @@
+[package]
+name = "sm-index"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+chrono = { workspace = true }
+dashmap = { workspace = true }
+sm-types = { workspace = true }
+sm-database = { workspace = true }

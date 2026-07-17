@@ -1,0 +1,19 @@
+[package]
+name = "sm-scanner"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+rayon = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+walkdir = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+flume = { workspace = true }
+sm-types = { workspace = true }
+sm-config = { workspace = true }
+sm-database = { workspace = true }

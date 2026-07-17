@@ -1,0 +1,27 @@
+[package]
+name = "sm-ai"
+version.workspace = true
+edition.workspace = true
+description = "StorageMind AI Engine - MobileCLIP and Vector operations"
+
+[dependencies]
+# Workspace deps
+tokio = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+sm-types = { workspace = true }
+sm-database = { workspace = true }
+sm-scheduler = { workspace = true }
+sm-config = { workspace = true }
+rusqlite = { workspace = true }
+image = { workspace = true }
+
+# ML & ONNX
+ort = { version = "2.0.0-rc.9", features = ["download-binaries", "ndarray"] }
+tokenizers = "0.19.1"
+ndarray = "0.17"
+
+# Downloading Models
+reqwest = { version = "0.12", features = ["stream", "rustls-tls"], default-features = false }
+futures-util = "0.3"

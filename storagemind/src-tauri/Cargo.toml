@@ -1,0 +1,44 @@
+[package]
+name = "storagemind"
+version.workspace = true
+edition.workspace = true
+description = "StorageMind — AI Native Storage Intelligence Platform"
+authors.workspace = true
+
+[lib]
+name = "storagemind_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { workspace = true }
+tauri-plugin-opener = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+parking_lot = "0.12"
+flume = "0.11"
+# Internal crates
+sm-types = { workspace = true }
+sm-database = { workspace = true }
+sm-platform = { workspace = true }
+sm-scheduler = { workspace = true }
+sm-scanner = { workspace = true }
+sm-index = { workspace = true }
+sm-watcher = { workspace = true }
+sm-search = { workspace = true }
+sm-thumbnail = { workspace = true }
+sm-cleaner = { workspace = true }
+sm-config = { workspace = true }
+sm-metadata = { workspace = true }
+sm-ai = { workspace = true }
+rusqlite = { workspace = true }
+chrono = { workspace = true }
+
+[features]

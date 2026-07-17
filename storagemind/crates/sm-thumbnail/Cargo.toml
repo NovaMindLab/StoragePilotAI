@@ -1,0 +1,13 @@
+[package]
+name = "sm-thumbnail"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+image = { workspace = true }
+sm-types = { workspace = true }
+sm-database = { workspace = true }
+rusqlite = { workspace = true }

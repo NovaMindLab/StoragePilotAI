@@ -1,0 +1,17 @@
+[package]
+name = "sm-scheduler"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tokio-util = { version = "0.7", features = ["rt"] }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+crossbeam-channel = { workspace = true }
+flume = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+sm-types = { workspace = true }

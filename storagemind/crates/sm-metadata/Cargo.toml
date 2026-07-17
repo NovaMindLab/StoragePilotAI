@@ -1,0 +1,26 @@
+[package]
+name = "sm-metadata"
+version.workspace = true
+edition.workspace = true
+description = "Metadata extraction and file hashing engine for StorageMind"
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sm-types = { workspace = true }
+sm-database = { workspace = true }
+rusqlite = { workspace = true }
+sm-scheduler = { workspace = true }
+
+# Hashing
+blake3 = "1.5.0"
+xxhash-rust = { version = "0.8.10", features = ["xxh3"] }
+
+# Image Metadata
+kamadak-exif = "0.5.5"
+
+# Audio Metadata
+lofty = "0.19.2"

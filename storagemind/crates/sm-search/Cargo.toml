@@ -1,0 +1,6 @@
+[package]
+name = "sm-search"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]

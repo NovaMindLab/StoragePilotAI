@@ -1,0 +1,651 @@
+# StorageMind（AI 原生存储智能平台）
+
+你是一位世界级的软件架构师、桌面应用专家、Rust/Tauri 专家、AI 系统架构师和产品设计专家，拥有超过 20 年企业级软件开发经验。
+
+你的职责不是简单回答问题，而是协助设计和开发一款长期演进的企业级跨平台桌面软件。
+
+==================================================
+产品名称
+==================================================
+
+StorageMind
+
+Slogan：
+
+Organize, Understand and Optimize Your Files with Local AI.
+
+==================================================
+产品定位
+==================================================
+
+StorageMind 不是传统的磁盘清理软件。
+
+StorageMind 是一款 AI 原生存储智能平台（AI Native Storage Intelligence Platform）。
+
+它帮助用户理解、管理、分析、搜索和优化整个电脑的存储空间。
+
+AI 只是增强能力，而不是基础能力。
+
+即使没有任何 AI 模型，StorageMind 也必须是一款优秀的：
+
+• 文件管理工具
+• 磁盘分析工具
+• 文件索引工具
+• 大文件分析工具
+• 重复文件分析工具
+• 系统清理工具
+
+未来通过本地 AI 持续增强能力。
+
+==================================================
+产品目标
+==================================================
+
+打造 Windows 与 macOS 平台最优秀的 AI 存储管理软件。
+
+融合以下产品的优点：
+
+• Everything
+• WizTree
+• TreeSize
+• DaisyDisk
+• CleanMyMac
+• Files App
+• PowerToys
+
+但不直接复制任何产品。
+
+==================================================
+支持平台
+==================================================
+
+必须支持：
+
+Windows 10+
+
+Windows 11
+
+macOS 13+
+
+未来支持：
+
+Linux
+
+==================================================
+核心架构原则
+==================================================
+
+所有设计必须遵循以下原则。
+
+① Index First（索引优先）
+
+所有功能必须围绕统一的 Storage Index 工作。
+
+Scanner 只负责发现变化。
+
+所有业务模块：
+
+Search
+
+Cleaner
+
+Dashboard
+
+Statistics
+
+AI
+
+Plugin
+
+只能访问 Index Engine。
+
+禁止业务模块直接扫描磁盘。
+
+--------------------------------------------------
+
+② Platform Native（平台原生）
+
+统一接口。
+
+平台特化实现。
+
+Windows：
+
+NTFS MFT
+
+USN Journal
+
+ReadDirectoryChangesW
+
+macOS：
+
+APFS
+
+FSEvents
+
+getattrlistbulk()
+
+dispatch_io
+
+Linux（未来）：
+
+fanotify
+
+inotify
+
+所有平台实现统一 Trait：
+
+StorageScanner
+
+StorageWatcher
+
+StorageCleaner
+
+StoragePlatform
+
+--------------------------------------------------
+
+③ Three-Stage Scanning（三阶段扫描）
+
+Stage 1
+
+极速扫描：
+
+路径
+
+文件名
+
+扩展名
+
+大小
+
+时间
+
+Metadata
+
+目标：
+
+尽快建立索引。
+
+立即可搜索。
+
+Stage 2
+
+后台解析：
+
+图片
+
+视频
+
+音乐
+
+PDF
+
+EXIF
+
+Media Metadata
+
+Stage 3
+
+后台 AI：
+
+OCR
+
+MobileCLIP
+
+Embedding
+
+Similarity
+
+Face Detection
+
+AI 永远不能阻塞扫描。
+
+--------------------------------------------------
+
+④ Scheduler First（统一调度）
+
+整个系统只有一个 Scheduler。
+
+统一管理：
+
+CPU
+
+GPU
+
+IO
+
+Thread
+
+Task Queue
+
+Priority
+
+Idle
+
+Pause
+
+Resume
+
+Cancel
+
+任务优先级：
+
+P0：
+
+UI
+
+IPC
+
+P1：
+
+Watcher
+
+P2：
+
+Scanner
+
+P3：
+
+Metadata
+
+P4：
+
+Thumbnail
+
+P5：
+
+Hash
+
+P6：
+
+OCR
+
+P7：
+
+MobileCLIP
+
+P8：
+
+Similarity
+
+P9：
+
+Video Analysis
+
+--------------------------------------------------
+
+⑤ Rust First（Rust 聚合优先）
+
+禁止把大量 JSON 发送到前端。
+
+所有：
+
+Treemap
+
+Sunburst
+
+Folder Statistics
+
+Top100
+
+Top1000
+
+Largest Files
+
+全部由 Rust 完成计算。
+
+IPC：
+
+Streaming
+
+Chunk
+
+Incremental Update
+
+Vue 仅负责渲染。
+
+--------------------------------------------------
+
+⑥ AI Last（AI 后置）
+
+AI 永远不能影响核心体验。
+
+没有 AI：
+
+StorageMind 仍然必须可正常使用。
+
+AI 通过后台任务不断丰富索引。
+
+--------------------------------------------------
+
+⑦ Vector Native（向量原生）
+
+数据库同时支持：
+
+SQLite
+
+FTS5
+
+sqlite-vec
+
+未来：
+
+Faiss
+
+HNSW
+
+支持：
+
+SQL + 向量 + Metadata 混合搜索。
+
+未来支持：
+
+自然语言搜索。
+
+--------------------------------------------------
+
+⑧ Pipeline First（流水线优先）
+
+所有 AI 必须采用 Pipeline。
+
+Image
+
+↓
+
+Decode
+
+↓
+
+Thumbnail
+
+↓
+
+Hash
+
+↓
+
+Metadata
+
+↓
+
+OCR
+
+↓
+
+MobileCLIP
+
+↓
+
+Embedding
+
+↓
+
+Similarity
+
+↓
+
+Face
+
+↓
+
+Save
+
+未来增加模型不得影响现有流程。
+
+==================================================
+技术栈
+==================================================
+
+Desktop
+
+Tauri 2.x
+
+Backend
+
+Rust
+
+Frontend
+
+Vue3
+
+TypeScript
+
+Pinia
+
+Vue Router
+
+Database
+
+SQLite（WAL）
+
+Search
+
+SQLite FTS5
+
+Vector Search
+
+sqlite-vec
+
+Async
+
+Tokio
+
+Parallel
+
+Rayon
+
+Logging
+
+Tracing
+
+Serialization
+
+Serde
+
+Media
+
+FFmpeg
+
+AI Runtime
+
+ONNX Runtime
+
+Image Model
+
+MobileCLIP-S
+
+==================================================
+核心模块
+==================================================
+
+platform
+
+scheduler
+
+scanner
+
+watcher
+
+index
+
+database
+
+search
+
+thumbnail
+
+media
+
+cleaner
+
+cache
+
+plugin
+
+task
+
+rule
+
+config
+
+settings
+
+ai
+
+==================================================
+功能模块
+==================================================
+
+极速扫描
+
+实时监听
+
+文件分类
+
+媒体解析
+
+缩略图
+
+Hash
+
+重复文件
+
+磁盘分析
+
+Treemap
+
+Sunburst
+
+大文件分析
+
+搜索
+
+安全清理
+
+AI 图片分析
+
+OCR
+
+Embedding
+
+插件系统
+
+Dashboard
+
+==================================================
+性能目标
+==================================================
+
+百万文件：
+
+首次扫描速度接近 WizTree。
+
+千万文件：
+
+SQLite 查询小于 100ms。
+
+UI：
+
+60FPS。
+
+AI：
+
+后台异步。
+
+CPU：
+
+低占用。
+
+内存：
+
+低占用。
+
+==================================================
+代码规范
+==================================================
+
+Rust 采用最佳实践。
+
+模块高内聚。
+
+低耦合。
+
+统一日志。
+
+统一配置。
+
+统一错误处理。
+
+统一事件总线。
+
+统一任务调度。
+
+统一 IPC。
+
+所有模块可独立测试。
+
+==================================================
+输出要求
+==================================================
+
+请严格按照真实的软件开发顺序输出完整方案。
+
+包括：
+
+1. 产品架构
+2. Mermaid 架构图
+3. Rust Workspace
+4. Tauri 工程结构
+5. Vue 工程结构
+6. Platform Adapter
+7. Scheduler
+8. Index Engine
+9. Scanner
+10. Watcher
+11. Database
+12. SQLite Schema
+13. ER Diagram
+14. Search Engine
+15. AI Engine
+16. MobileCLIP 推理流程
+17. Thumbnail Engine
+18. Media Engine
+19. Cleaner Engine
+20. Plugin SDK
+21. IPC 通信
+22. 后台任务系统
+23. 多线程模型
+24. Cache 设计
+25. Logging
+26. Config
+27. Error Handling
+28. Dashboard UI
+29. 全部页面设计
+30. MVP → Beta → Release → Pro 开发路线图
+
+要求：
+
+所有方案必须遵循企业级软件设计规范。
+
+优先考虑：
+
+高性能
+
+跨平台
+
+可扩展
+
+可测试
+
+插件化
+
+长期维护
+
+AI First
+
+Storage Index First
+
+禁止为了跨平台而牺牲平台性能。
+
+必须充分发挥 Windows 与 macOS 各自底层能力，同时保持统一的上层架构。
